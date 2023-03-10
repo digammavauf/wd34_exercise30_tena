@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 
 class SampleClassComponent extends Component {
     constructor() {
@@ -8,6 +8,7 @@ class SampleClassComponent extends Component {
             background: "red",
             foreground: "white" 
         }
+        //this.changeName = this.changeName.bind(); this is also another approach for binding
     }
 
     showAlert1() {
@@ -28,11 +29,11 @@ class SampleClassComponent extends Component {
         })
     }
 
-    changeEverything(pName, pTextColor, pBackground) {
+    changeEverything(pName, pForeground, pBackground) {
         this.setState({
             name: pName,
             background: pBackground,
-            foreground: pTextColor
+            foreground: pForeground
         })
     }
 
@@ -78,6 +79,12 @@ class SampleClassComponent extends Component {
                     showAlert2P with Param
                 </button>
 
+                <button
+                    onClick={this.showAlert2P.bind(this, this.props.name)}
+                >
+                    showAlert2P using bind() with Param
+                </button>
+
                 <h1
                     style={{padding: '0.5rem', color: this.state.foreground, background: this.state.background}}
                 >
@@ -88,6 +95,12 @@ class SampleClassComponent extends Component {
                     onClick={()=>this.changeName()}
                 >
                     changeName
+                </button>
+
+                <button
+                    onClick={this.changeName.bind(this)}
+                >
+                    changeName using bind()
                 </button>
 
                 <button
